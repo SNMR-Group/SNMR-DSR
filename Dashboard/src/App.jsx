@@ -1,20 +1,24 @@
+// src/App.js
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Box from "@mui/material/Box";
-import NavbarWithSidebar from "./components/Navbar/NavbarWithSidebar";
-import DashBoard from "./pages/DashBoard";
-import AddMaterials from "./features/AddMaterial";
+import AppThemeProvider from './ThemeProvider';
+import NavbarWithSidebar from './components/Navbar/NavbarWithSidebar';
+import Dashboard from './pages/Dashboard';
+import DSRForm from './features/DSRForm';
+import DSRTable from './features/DSRTable';
 
 function App() {
   return (
     <Router>
-      <NavbarWithSidebar>
-        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <AppThemeProvider>
+        <NavbarWithSidebar>
           <Routes>
-            <Route path="/" element={<DashBoard />} />
-            <Route path="/add-materials" element={<AddMaterials />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dsr/add-dsr" element={<DSRForm />} />
+            <Route path="/dsr/dsr-table" element={<DSRTable />} />
+            <Route path="*" element={<Dashboard />} />
           </Routes>
-        </Box>
-      </NavbarWithSidebar>
+        </NavbarWithSidebar>
+      </AppThemeProvider>
     </Router>
   );
 }
